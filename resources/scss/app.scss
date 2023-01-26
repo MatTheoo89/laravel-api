@@ -1,0 +1,34 @@
+/* background #092450
+
+text #25f8c1
+
+btn background #00478a
+
+btn text & Titoli #048cee
+*/
+
+
+@import '~bootstrap/scss/bootstrap';
+
+body{
+    background-color: #092450;
+    color: #25f8c1 !important;
+}
+
+.ck.ck-editor__main{
+    color: black;
+}
+
+.my-container{
+    width: 85%;
+    margin: 0 auto;
+}
+
+.thumb{
+    width: 100px;
+}
+
+.ck-editor__editable[role="textbox"] {
+    /* editing area */
+    height: 200px;
+}
