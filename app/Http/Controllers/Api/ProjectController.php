@@ -19,6 +19,10 @@ class ProjectController extends Controller
         
         $project = Project::where('slug', $slug)->with(['type', 'technologies'])->first();
 
-        return response()->json(compact('project'));
+        if ($project->cover_image) {
+            $project->cover_image = url('storage/placeholder.jpg');
+        }
+
+        return response()->json($project);
     }
 }
