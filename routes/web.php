@@ -27,6 +27,10 @@ Route::middleware(['auth', 'verified'])
     Route::resource('projects', ProjectController::class);
 });
 
+Route::get('{any?}', function(){
+    return view('guest.home');
+})->where('any', '.*')->name('home');
+
 
 
 
