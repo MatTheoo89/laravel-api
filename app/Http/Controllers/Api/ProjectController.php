@@ -22,7 +22,7 @@ class ProjectController extends Controller
         if($project->cover_image){
             $project->cover_image = url("storage/" . $project->cover_image);
         }else{
-            $project->cover_image = url("storage/uploads/image-paceholder.jpg");
+            $project->cover_image = url("storage/uploads/image-placeholder.jpg");
         }
 
         return response()->json($project);
