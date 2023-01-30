@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::namespace('Api')
         ->prefix('project')
         ->group(function(){
-            route::get('/', [ProjectController::class, 'index']);
-            route::get('/{slug}', [ProjectController::class, 'show']);
+            Route::get('/', [ProjectController::class, 'index']);
+            Route::post('/search', [ProjectController::class, 'search']);
+            Route::get('/{slug}', [ProjectController::class, 'show']);
         });
