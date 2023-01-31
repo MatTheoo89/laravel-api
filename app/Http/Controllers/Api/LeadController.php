@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Validator;
 class LeadController extends Controller
 {
     public function store(Request $request){
+
         $data = $request->all();
 
         $success = true;
