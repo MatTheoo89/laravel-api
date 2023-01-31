@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Mail\NewContact;
+use App\Models\Lead;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -19,7 +22,7 @@ class LeadController extends Controller
         [
             'name' => 'required|min:2|max:255',
             'mail' => 'required|email|max:255',
-            'object' => 'required|email|max:255',
+            'object' => 'required|max:255',
             'message' => 'required|min:5',
         ],
         [
@@ -30,7 +33,6 @@ class LeadController extends Controller
             'mail.mail' => 'L\'email non è formattata correttamente',
             'mail.max' => 'L\'email deve avere al massimo :max caratteri',
             'object.required' => 'L\'email è un campo obbligatorio',
-            'object.email' => 'L\'email non è formattata correttamente',
             'object.max' => 'L\'email deve avere al massimo :max caratteri',
             'message.required' => 'Il messaggio è un campo obbligatorio',
             'message.min' => 'Il messaggio deve avere al minimo :min caratteri',
@@ -43,14 +45,14 @@ class LeadController extends Controller
         return response()->json(compact('success','errors'));
     }
 
-        // salvare i dati nel db
-        // $new_lead = new Lead();
-        // $new_lead->fill($data);
-        // $new_lead->save();
+        //salvare i dati nel db
+        $new_lead = new Lead();
+        $new_lead->fill($data);
+        $new_lead->save();
 
-        // inviare la mail
-        // Mail::to('info@boolpress.com')->send(new NewContact($new_lead));
+        //inviare la mail
+        Mail::to('admin@administrator.com')->send(new NewContact($new_lead));
 
-        return response()->json($data);
+        return response()->json(compact('success'));
     }
 }
